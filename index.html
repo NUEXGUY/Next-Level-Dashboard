@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('styles'); ?>
+    <title>Next Level Dashboard</title>
+  </head>
+  <body>
+    <h1>Next Level Dashboard</h1>
+    <div id="universalSearch">
+      <input type="search" id="searchInput" placeholder="Search..." autocomplete="off">
+    </div>
+
+    <div id="buttonContainer">
+      <!-- Add New Person Button -->
+      <button id="addPersonBtn">New Person</button>
+
+      <!-- New Appointment Button -->
+      <button id="addAppointmentBtn">New Appointment</button>
+
+      <!-- New Transaction Button -->
+      <button id="addTransactionBtn">New Transaction</button>
+
+      <!-- New Note Button -->
+      <button id="addNoteBtn">New Note</button>
+
+      <!-- View All People Button -->
+      <button id="viewAllPeopleBtn">View All</button>
+    </div>
+
+    <div id="notifierContainer">
+      <!-- Lead Notifier -->
+      <h3>Leads <span title="This is everyone in our system that has a status of 'lead' and a reputation of 'green' or yellow'. This represents people that we haven't had the chance to work with yet but still have the opportunity to convert." class="notifier" id="leadCount"></span></h3>
+
+      <!-- Active Patient Notifier -->
+      <h3>Active <span title="This is everyone in our system that has been in for an appointment within the last 30 days." class="notifier" id="activePatientCount"></span></h3>
+
+      <!-- Visits/Wk Notifier -->
+      <h3>Visits Per Week <span title="This is a calculation of how many times a week people in our system are coming in for an appointment in the last 30 days." class="notifier" id="visitsPerWeekCount"></span></h3>
+    </div>
+    
+    <div id="dailyListContainer">
+      
+    <!-- Patients Today -->
+    <div class="dailyListItem" id="appointmentsTodayItem">
+    <h2>Appointments Today</h2>
+      <div class="dailyListContainer" id="appointmentsTodayContainer"></div>
+    </div>
+
+    <!-- Followups Today
+    <div class="dailyListItem" id="followupTodayItem">
+    <h2>Follow-Ups Today</h2>
+      <div class="dailyListContainer" id="followupTodayContainer"></div>
+    </div> -->
+    
+    <!-- Recent Notes -->
+    <div class="dailyListItem" id="recentNotesItem">
+    <h2>Recent Notes</h2>
+      <div class="dailyListContainer" id="recentNotesContainer">
+        <li>
+          <span class="noteName">Note Name</span>
+          <br>
+          <span class="noteContent">Note Content</span>
+          <span class="noteUser"> - User Name</span>
+        </li>
+      </div>
+    </div>
+    
+    <!-- QUick Links -->  
+    <div class="dailyListItem" id="quickLinksItem">
+    <h2>Quick Links</h2>
+      <div class="dailyListContainer" id="quickLinksContainer">
+        <ul>
+        <h5 class="">Patient Engagement</h5>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="https://vimeo.com/nextlevelpt/thanksforspeakingwithus">After Discovery Call</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://vimeo.com/nextlevelpt/thanksforspeakingwithus')">📋</span></li>
+          <li><a href="https://vimeo.com/nextlevelpt/thankformeetingme">Day After DV</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://vimeo.com/nextlevelpt/thankformeetingme')">📋</span></li>
+          <li><a href="https://vimeo.com/nextlevelpt/whatquestionsdoyouhave">Not Ready</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://vimeo.com/nextlevelpt/whatquestionsdoyouhave')">📋</span></li>
+          <li><a href="https://vimeo.com/nextlevelpt/thanksforbooking">After Booking</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://vimeo.com/nextlevelpt/thanksforbooking')">📋</span></li>
+          <li><a href="https://vimeo.com/nextlevelpt/meetyourdoctor">After Confirming DV</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://vimeo.com/nextlevelpt/meetyourdoctor')">📋</span></li>
+          <li><a href="https://vimeo.com/nextlevelpt/checkingin">Checking In</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://vimeo.com/nextlevelpt/checkingin')">📋</span></li>
+          <li><a href="Getting To NLPT	bit.ly/gettingtonlpt">Getting to NLPT</a><span class="clipboardLinks" onclick="copyToClipboard('Getting To NLPT	bit.ly/gettingtonlpt')">📋</span></li>
+          <h5 class="">Affiliate Product Links</h5>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <h5 class="">Helpful Content</h5>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+          <li><a href="bit.ly/nlptbirthday">Happy Birthday</a><span class="clipboardLinks" onclick="copyToClipboard(event,'https://bit.ly/nlptbirthday')">📋</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- New Person Modal -->
+<div id="addPersonModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="modal-header">
+      <h2>Add New Person</h2>
+    </div>
+    <div class="modal-scrollable-content">
+      <form id="addPersonForm">
+          <!-- Names -->
+          <div class="form-row">
+            <input name="firstName" required type="text" id="firstName" placeholder="First Name">
+            <input name="middleName" type="text" id="middleName" placeholder="Middle Name">
+            <input name="lastName" required type="text" id="lastName" placeholder="Last Name">
+          </div>
+
+          <!-- Birth, Gender, Phone, Email -->
+          <div class="form-row">
+            <label for="birth">Date of Birth</label>
+            <input required type="date" id="birth" name="birth">
+            <select name="gender" id="gender">
+              <option hidden disabled selected value> -- Gender -- </option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other-gender">Other</option>
+            </select>
+            <input name="phone" required type="tel" id="phone" placeholder="Phone">
+            <input name="email" type="email" id="email" placeholder="Email">
+          </div>
+
+          <!-- Address Fields -->
+          <div class="form-row">
+            <input name="street" type="text" id="street" placeholder="Street">
+            <input name="unit" type="text" id="unit" placeholder="Unit">
+            <input name="city" type="text" id="city" placeholder="City">
+            <input name="state" type="text" id="state" placeholder="State">
+            <input name="zip" type="text" id="zip" placeholder="Zip Code">
+          </div>
+
+          <!-- Emergency Contact -->
+          <div class="form-row">
+            <input name="emergencyName" type="text" id="emergencyName" placeholder="Emergency Contact's Name">
+            <input name="emergencyContact" type="tel" id="emergencyContact" placeholder="Emergency Contact Phone">
+          </div>
+
+          <!-- Reputation, Status, Source -->
+          <div class="form-row">
+            <select name="reputation" id="reputation">
+              <option hidden disabled selected value> -- Reputation -- </option>
+              <option value="green">Green</option>
+              <option value="yellow">Yellow</option>
+              <option value="red">Red</option>
+            </select>
+            <select name="status" id="status">
+              <option hidden disabled selected value> -- Status -- </option>
+              <option value="lead">Lead</option>
+              <option value="patient">Patient</option>
+              <option value="discharged">Discharged</option>
+              <option value="business">Business</option>
+            </select>
+            <select name="source" id="source">
+              <option hidden disabled selected value> -- Source -- </option>
+              <option value="word-of-mouth">Word of Mouth</option>
+              <option value="event">Event</option>
+              <option value="talk">Talk</option>
+              <option value="google">Google</option>
+              <option value="facebook">Facebook</option>
+              <option value="youtube">YouTube</option>
+              <option value="doctor">Doctor</option>
+              <option value="insurance">Insurance</option>
+              <option value="other-source">Other</option>
+            </select>
+          </div>
+
+          <!-- Pain, Diagnoses, Referral -->
+          <div class="form-row">
+            <select name="pain" id="pain">
+              <option hidden disabled selected value> -- Pain -- </option>
+              <option value="head">Head</option>
+              <option value="neck">Neck</option>
+              <option value="shoulder">Shoulder</option>
+              <option value="back">Back</option>
+              <option value="hip">Hip</option>
+              <option value="sciatic">Sciatic</option>
+              <option value="knee">Knee</option>
+              <option value="ankle">Ankle</option>
+              <option value="foot">Foot</option>
+              <option value="balance">Balance</option>
+              <option value="other-pain">Other</option>
+            </select>
+            <input name="diagnoses1" type="text" id="diagnoses1" placeholder="ICD-10">
+            <input name="diagnoses2" type="text" id="diagnoses2" placeholder="ICD-10">
+            <input name="diagnoses3" type="text" id="diagnoses3" placeholder="ICD-10">
+            <label for="referralDate">Referral Date</label>
+            <input type="date" id="referralDate" name="referralDate" placeholder="Referral Date">
+            <input name="referrer" type="text" id="referrer" placeholder="Referring Provider">
+          </div>
+
+          <!-- Insurance and Payment Information -->
+          <div class="form-row">
+            <input name="insurance" type="text" id="insurance" placeholder="Insurance Company">
+            <input name="insuranceNumber" type="text" id="insuranceNumber" placeholder="Insurance Number">
+            <input name="insuranceGroup" type="text" id="insuranceGroup" placeholder="Insurance Group">
+            <label for="insuranceEffective">Ins. Effective Date</label>
+            <input name="insuranceEffective" type="date" id="insuranceEffective" placeholder="Insurance Effective Date">
+            <input name="insuranceReimbursement" type="text" id="insuranceReimbursement" placeholder="Insurance Reimbursement Rate">
+            <input name="copay" type="text" id="copay" placeholder="Insurance Copay">
+            <input name="paymentIe" type="text" id="paymentIe" placeholder="Initial Evaluation Cost">
+            <input name="paymentVisit" type="text" id="paymentVisit" placeholder="Visit Cost">
+            <input name="deductible" type="text" id="deductible" placeholder="Annual Deductible">
+            <input name="deductibleRemaining" type="text" id="deductibleRemaining" placeholder="Remaining Deductible">
+            <input name="outOfPocket" type="text" id="outOfPocket" placeholder="Annual Out of Pocket">
+            <input name="oopRemaining" type="text" id="oopRemaining" placeholder="Out of Pocket Remaining">
+            <input name="visitsPerYear" type="text" id="visitsPerYear" placeholder="Visits Allowed Per Year">
+          </div>
+
+          <!-- Consultation and Evaluation Dates -->
+          <div class="form-row">
+            <label for="dvDate">Consultation Date</label>
+            <input type="date" id="dvDate" name="dvDate" placeholder="Date of Consultation">
+            <label for="ieDate">Initial Eval Date</label>
+            <input type="date" id="ieDate" name="ieDate" placeholder="Date of Initial Evaluation">
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-row">
+            <button id="newPersonSubmit" type="submit">Submit</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- New Appointment Modal -->
+<div id="addAppointmentModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Add New Appointments</h2>
+    <form id="addAppointmentForm">
+        <select id="appointmentPersonDropdown" class="autoPopDropdown">
+          <option value="">Select a person...</option>
+        </select>
+        </br>
+        <div id="scheduledVisitsDisplay"></div>
+      </br>
+      <div class="addAppointment"></div>
+        </br>
+        <button id= "additionalAppointment">New Appointment</button>
+        <button id="submitAppointment" type="submit">Add Appointments</button>
+    </form>
+  </div>
+</div>
+      
+<!-- New Transaction Modal -->
+<div id="addTransactionModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Add New Transactions</h2>
+        <form id="addTransactionForm">
+            <select id="transPersonDropdown" class="autoPopDropdown">
+                <option value="">Select a person...</option>
+            </select>
+            </br>
+            <div id="visitCostDisplay"></div>
+            </br>
+            <div class="lineItem">
+                <label for="transType">What Are They Purchasing?</label>
+                <select name="transType" class="productDropdown">
+                    <option hidden disabled selected value> -- select a product/service -- </option>
+                </select>
+                <input type="number" class="quantityInput" min="1" value="1" placeholder="How Many?">
+                <span class="lineTotal"></span>
+                </br>
+            </div>
+        </form>
+        <button id="addLineItemBtn">Add Item</button>
+        <div id="checkoutTotal">Total Cost: $0.00</div>
+        <button id="submitTransactionFormBtn">Add Transactions</button>
+    </div>
+</div>
+
+<!-- New Note Modal -->
+<div id="addNoteModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Add New Note</h2>
+      <select id="personNoteDropdown" class="autoPopDropdown">
+        <option value="">Select a person...</option>
+      </select>
+      </br>
+      <textarea name="personNote" id="noteText" rows="10" cols="50" placeholder="Include as much detail as possible..."></textarea>
+      </br>
+      <button id="submitNote" type="button">Submit</button>
+  </div>
+</div>
+
+<!-- View All Modal -->
+<div id="viewAllPeopleModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>View People</h2>
+    <div class="modal-header">
+      <span class="filter active" onclick="filterNames('all'); updateActiveFilter(this)" data-filter="all">All</span>
+      <span class="filter" onclick="filterNames('leads'); updateActiveFilter(this)" data-filter="leads">Leads</span>
+      <span class="filter" onclick="filterNames('active'); updateActiveFilter(this)" data-filter="active">Active</span>
+      <span class="filter" onclick="filterNames('discharged'); updateActiveFilter(this)" data-filter="discharged">Discharged</span>
+      <span class="filter" onclick="filterNames('business'); updateActiveFilter(this)" data-filter="business">Business</span>
+    </div>
+    <div class="viewAllContent" id="viewAllContent"></div>
+  </div>
+</div>
+
+<!-- Customer Profile Modal -->
+<div id="customerProfileModal" class="modal">
+  <div class="modal-content">
+    <!-- Close Button -->
+    <span class="close" onclick="UIModule.closeModal('customerProfileModal')">&times;</span>
+
+    <!-- Customer Name -->
+    <div class="nameEditContainer profileSectionGrid">
+      <h2 id="customerName" class="profileName">Customer Name</h2>
+    </div>
+
+    <!-- Customer Basic Details -->
+    <div id="customerBasicDetails" class="profileSection viewMode profileSectionGrid" data-section="customerBasicDetails">
+      <h3>Basic Details</h3>
+      <p>Birth: <span id="customerBirth">N/A</span></p>
+      <p>Gender: <span id="customerGender">N/A</span></p>
+      <p>Phone: <span id="customerPhone">N/A</span></p>
+      <p>Email: <span id="customerEmail">N/A</span></p>
+      <button class="editButton" onclick="editProfile('customerBasicDetails')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerBasicDetails')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerBasicDetails')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Customer Address -->
+    <div id="customerAddress" class="profileSection viewMode profileSectionGrid" data-section="customerAddress">
+      <h3>Address</h3>
+      <p><span id="customerAddressStreet">N/A</span> <span id="customerAddressUnit"></span></p>
+      <p><span id="customerAddressCity">N/A</span>, <span id="customerAddressState">N/A</span> <span id="customerAddressZip">N/A</span></p>
+      <button class="editButton" onclick="editProfile('customerAddress')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerAddress')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerAddress')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Emergency Contact -->
+    <div id="customerEmergencyContact" class="profileSection viewMode profileSectionGrid" data-section="customerEmergencyContact">
+      <h3>Emergency Contact</h3>
+      <p><span id="customerEmergencyName">N/A</span> <span id="customerEmergencyNumber">N/A</span></p>
+      <button class="editButton" onclick="editProfile('customerEmergencyContact')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerEmergencyContact')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerEmergencyContact')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Additional Customer Details -->
+    <div id="customerAdditionalDetails" class="profileSection viewMode profileSectionGrid" data-section="customerAdditionalDetails">
+      <h3>Additional Details</h3>
+      <p>Status: <span id="customerStatus">N/A</span></p>
+      <p>Reputation: <span id="customerReputation">N/A</span></p>
+      <p>Pain: <span id="customerPain">N/A</span></p>
+      <p>Source: <span id="customerSource">N/A</span></p>
+      <p>Diagnoses: <span id="customerDiagnoses1">N/A </span><span id="customerDiagnoses2">N/A </span><span id="customerDiagnoses3">N/A </span></p>
+      <p>Referral Date: <span id="customerReferralDate">N/A</span></p>
+      <p>Referrer: <span id="customerReferrer">N/A</span></p>
+      <button class="editButton" onclick="editProfile('customerAdditionalDetails')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerAdditionalDetails')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerAdditionalDetails')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Insurance Information -->
+    <div id="customerInsurance" class="profileSection viewMode profileSectionGrid" data-section="customerInsurance">
+      <h3>Insurance</h3>
+      <p>Provider: <span id="customerInsuranceProvider">N/A</span></p>
+      <p>Number: <span id="customerInsuranceNumber">N/A</span></p>
+      <p>Group Number: <span id="customerInsuranceGroupNumber">N/A</span></p>
+      <p>Effective Date: <span id="customerInsuranceEffectiveDate">N/A</span></p>
+      <p>Reimbursement: $<span id="customerInsuranceReimbursement">0</span></p>
+      <button class="editButton" onclick="editProfile('customerInsurance')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerInsurance')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerInsurance')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Financial Information -->
+    <div id="customerFinancial" class="profileSection viewMode profileSectionGrid" data-section="customerFinancial">
+      <h3>Financial</h3>
+      <p>Copay: $<span id="customerFinancialCopay">0</span></p>
+      <p>Payment Ie: $<span id="customerFinancialPaymentIe">0</span></p>
+      <p>Payment Visit: $<span id="customerFinancialPaymentVisit">0</span></p>
+      <p>Deductible: $<span id="customerFinancialDeductible">0</span></p>
+      <p>Deductible Remaining: $<span id="customerFinancialDeductibleRemaining">0</span></p>
+      <p>Out Of Pocket: $<span id="customerFinancialOutOfPocket">0</span></p>
+      <p>OOP Remaining: $<span id="customerFinancialOopRemaining">0</span></p>
+      <p>Visits Per Year: <span id="customerFinancialVisitsPerYear">N/A</span></p>
+      <button class="editButton" onclick="editProfile('customerFinancial')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerFinancial')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerFinancial')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Packages Information -->
+    <div id="customerPackages" class="profileSection viewMode profileSectionGrid" data-section="customerPackages">
+      <h3>Packages</h3>
+      <p>MPS Package: <span id="customerPackageMps">N/A</span></p>
+      <p>Cash Package: <span id="customerPackageCash">N/A</span></p>
+      <p>Wellness Package: <span id="customerPackageWellness">N/A</span></p>
+      <button class="editButton" onclick="editProfile('customerPackages')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerPackages')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerPackages')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Dates Information -->
+    <div id="customerDates" class="profileSection viewMode profileSectionGrid" data-section="customerDates">
+      <h3>Dates</h3>
+      <p>DV Date: <span id="customerDateDv">N/A</span></p>
+      <p>IE Date: <span id="customerDateIe">N/A</span></p>
+      <button class="editButton" onclick="editProfile('customerDates')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerDates')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerDates')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Transactions Information -->
+    <div class="customerTransactions viewMode profileSection profileSectionGrid">
+      <h3>Transactions</h3>
+      <div class="transactionList"></div>
+      <!-- <button class="editButton" onclick="editProfile('customerTransactions')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerTransactions')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerTransactions')">Cancel</button>
+      </div> -->
+    </div>
+
+    <!-- Visits Information -->
+    <div class="customerVisits viewMode profileSection profileSectionGrid">
+      <h3>Visits</h3>
+      <ul class="visitList"></ul>
+      <!-- <button class="editButton" onclick="editProfile('customerVisits')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerVisits')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerVisits')">Cancel</button>
+      </div> -->
+    </div>
+
+    <!-- Notes Information -->
+    <div class="customerNotes viewMode profileSection profileSectionGrid">
+      <h3>Notes</h3>
+      <ul class="noteList"></ul>
+      <!-- <button class="editButton" onclick="editProfile('customerNotes')">Edit</button>
+      <div class="editModeButtons" style="display:none;">
+        <button class="saveButton" onclick="saveProfile('customerNotes')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerNotes')">Cancel</button>
+      </div> -->
+    </div>
+
+    <!-- EditMode Sections (Initially Hidden) -->
+
+    <!-- Customer Basic Details (Edit Mode) -->
+    <div id="customerBasicDetailsEdit" class="editMode profileSection profileSectionGrid">
+      <h3>Basic Details (Edit Mode)</h3>
+      <input type="text" id="editCustomerBirth" placeholder="Birth" />
+      <input type="text" id="editCustomerGender" placeholder="Gender" />
+      <input type="text" id="editCustomerPhone" placeholder="Phone" />
+      <input type="text" id="editCustomerEmail" placeholder="Email" />
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerBasicDetails')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerBasicDetails')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Customer Address (Edit Mode) -->
+    <div id="customerAddress" class="profileSection editMode profileSectionGrid" data-section="customerAddress">
+      <h3>Address</h3>
+      <input type="text" id="customerAddressStreet" placeholder="123 Abc Street"/><span> </span><input type="text" id="customerAddressUnit" placeholder="Apartment/Unit/Suite/Etc."/>
+      <input type="text" id="customerAddressCity" placeholder="City"/>, <input type="text" id="customerAddressState" placeholder="State"> <input type="text" id="customerAddressZip" placeholder="Zip Code"/>
+      <button class="editButton" onclick="editProfile('customerAddress')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerAddress')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerAddress')">Cancel</button>
+      </div>
+    </div>
+
+
+    <!-- Emergency Contact (Edit Mode) -->
+    <div id="customerEmergencyContact" class="profileSection editMode profileSectionGrid" data-section="customerEmergencyContact">
+      <h3>Emergency Contact</h3>
+      <input type="text" id="customerEmergencyName" placeholder="Emergency Contact"/><span> | </span><input type="text" id="customerEmergencyNumber" placeholder="Emergency Phone"/>
+      <button class="editButton" onclick="editProfile('customerEmergencyContact')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerEmergencyContact')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerEmergencyContact')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Additional Customer Details (Edit Mode) -->
+    <div id="customerAdditionalDetails" class="profileSection editMode profileSectionGrid" data-section="customerAdditionalDetails">
+      <h3>Additional Details</h3>
+      Status: <input type="text" id="customerStatus"/><br>
+      Reputation: <input type="text" id="customerReputation"/><br>
+      Pain: <input type="text" id="customerPain"/><br>
+      Source: <input type="text" id="customerSource"/><br>
+      Diagnoses: <input type="text" id="customerDiagnoses1"/>/<input type="text" id="customerDiagnoses2"/>/<input type="text" id="customerDiagnoses3"/><br>
+      Referral Date: <input type="text" id="customerReferralDate"/><br>
+      Referrer: <input type="text" id="customerReferrer"/><br>
+      <button class="editButton" onclick="editProfile('customerAdditionalDetails')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerAdditionalDetails')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerAdditionalDetails')">Cancel</button>
+      </div>
+    </div>
+
+
+    <!-- Insurance Information (Edit Mode) -->
+    <div id="customerInsurance" class="profileSection editMode profileSectionGrid" data-section="customerInsurance">
+      <h3>Insurance</h3>
+      <p>Provider: <input type="text" id="customerInsuranceProvider"/></p>
+      <p>Number: <input type="text" id="customerInsuranceNumber"/></p>
+      <p>Group Number: <input type="text" id="customerInsuranceGroupNumber"/></p>
+      <p>Effective Date: <input type="text" id="customerInsuranceEffectiveDate"/></p>
+      <p>Reimbursement: $<input type="text" id="customerInsuranceReimbursemen"/></p>
+      <button class="editButton" onclick="editProfile('customerInsurance')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerInsurance')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerInsurance')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Financial Information (Edit Mode) -->
+    <div id="customerFinancial" class="profileSection editMode profileSectionGrid" data-section="customerFinancial">
+      <h3>Financial</h3>
+      <p>Copay: $<input type="text" id="customerFinancialCopay"/></p>
+      <p>Payment Ie: $<input type="text" id="customerFinancialPaymentIe"/></p>
+      <p>Payment Visit: $<input type="text" id="customerFinancialPaymentVisit"/></p>
+      <p>Deductible: $<input type="text" id="customerFinancialDeductible"/></p>
+      <p>Deductible Remaining: $<input type="text" id="customerFinancialDeductibleRemaining"/></p>
+      <p>Out Of Pocket: $<input type="text" id="customerFinancialOutOfPocket"/></p>
+      <p>OOP Remaining: $<input type="text" id="customerFinancialOopRemaining"/></p>
+      <p>Visits Per Year: <input type="text" id="customerFinancialVisitsPerYear"/></p>
+      <button class="editButton" onclick="editProfile('customerFinancial')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerFinancial')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerFinancial')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Packages Information (Edit Mode) -->
+    <div id="customerPackages" class="profileSection editMode profileSectionGrid" data-section="customerPackages">
+      <h3>Packages</h3>
+      MPS Package: <input type="text" id="customerPackageMps"/><br>
+      Cash Package: <input type="text" id="customerPackageCash"/><br>
+      Wellness Package: <input type="text" id="customerPackageWellness"/><br>
+      <button class="editButton" onclick="editProfile('customerPackages')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerPackages')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerPackages')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Dates Information (Edit Mode) -->
+    <div id="customerDates" class="profileSection editMode profileSectionGrid" data-section="customerDates">
+      <h3>Dates</h3>
+      DV Date: <input type="text" id="customerDateDv"/><br>
+      IE Date: <input type="text" id="customerDateIe"/><br>
+      <button class="editButton" onclick="editProfile('customerDates')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerDates')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerDates')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Transactions Information (Edit Mode)
+    <div class="customerTransactions editMode profileSection profileSectionGrid">
+      <h3>Transactions</h3>
+      <div class="transactionList"></div>
+      <button class="editButton" onclick="editProfile('customerTransactions')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerTransactions')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerTransactions')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Visits Information (Edit Mode)
+    <div class="customerVisits editMode profileSection profileSectionGrid">
+      <h3>Visits</h3>
+      <ul class="visitList"></ul>
+      <button class="editButton" onclick="editProfile('customerVisits')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerVisits')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerVisits')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Notes Information (Edit Mode)
+    <div class="customerNotes editMode profileSection profileSectionGrid">
+      <h3>Notes</h3>
+      <ul class="noteList"></ul>
+      <button class="editButton" onclick="editProfile('customerNotes')">Edit</button>
+      <div class="editModeButtons">
+        <button class="saveButton" onclick="saveProfile('customerNotes')">Save</button>
+        <button class="cancelButton" onclick="cancelEdit('customerNotes')">Cancel</button>
+      </div>
+    </div>     -->
+  </div>
+</div>
+
+<!-- Search Results Modal -->
+<div id="searchResultsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="UIModule.closeModal('searchResultsModal')">&times;</span>
+        <h2>Search Results</h2>
+        <div id="searchResultsContent">
+            <!-- Your search results content goes here -->
+        </div>
+        <!-- Add a div for the "No Results Found" message with the ID 'noResultsMessage' -->
+        <div id="noResultsMessage">
+            <p>No Results Found</p>
+        </div>
+    </div>
+</div>
+
+<div id="loadingSpinner">
+  <svg width="500" height="500" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke="#FFFFFF" stroke-linecap="round" stroke-dashoffset="0" stroke-dasharray="95.493" transform="translate(0,0) rotate(-90 50 50)">
+      <animateTransform attributeName="transform" type="rotate" values="0 50 50;360 50 50" times="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+    </circle>
+  </svg>
+</div>
+
+<div id="warningModal" class="warningModal">
+    <div class="warningModalContent">
+        <h2 id="warningModalTitle">Confirm Action</h2>
+        <p id="warningModalText">You have unsaved changes. Are you sure you want to close?</p>
+        <button id="warningYes">Yes</button>
+        <button id="warningNo">No</button>
+    </div>
+</div>
+
+<span id="confirmationToast">Copied to clipboard!</span>
+
+    <?!= include('main'); ?>
+  </body>
+</html>
