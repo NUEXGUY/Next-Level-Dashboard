@@ -2,6 +2,16 @@
   --nlpt-orange: #F14D00;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 h1 {
   color: #F14D00;
+  text-align: center;
+  font-size: 3em;
 }
