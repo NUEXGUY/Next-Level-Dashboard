@@ -3,6 +3,8 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -12,6 +14,5 @@ body {
 
 h1 {
   color: #F14D00;
-  text-align: center;
   font-size: 3em;
 }
